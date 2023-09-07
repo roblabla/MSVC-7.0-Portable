@@ -29,7 +29,7 @@ def main():
             continue
 
         dst_file = decompme_bin / src_file.relative_to(vc7_bin)
-        dst_file = dst_file.parent / dst_file.name.lower()
+        dst_file = dst_file.parent / dst_file.name.upper()
 
         print(src_file, "->", dst_file)
         shutil.copyfile(src_file, dst_file)
