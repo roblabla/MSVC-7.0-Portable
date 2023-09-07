@@ -24,6 +24,7 @@ def main():
     decompme_bin.mkdir()
     # Copy all the programs in vc7_path bin to our bin. Lowercase them.
     vc7_bin = vc7_path / 'BIN'
+    print(f"COPY {vc7_bin}")
     for src_file in vc7_bin.glob('*'):
         if not src_file.is_file():
             continue
@@ -44,6 +45,7 @@ def main():
 
     # Start with VC7 includes.
     vc7_include = vc7_path / 'INCLUDE'
+    print(f"COPY {vc7_include}")
     for src_file in vc7_include.rglob('*'):
         if not src_file.is_file():
             continue
@@ -55,10 +57,12 @@ def main():
         dst_file.parent.mkdir(exist_ok=True)
 
         # Then, copy the file.
+        print(src_file, "->", dst_file)
         shutil.copyfile(src_file, dst_file)
 
     # Then, copy the PlatformSDK
-    platform_sdk_include = vc7_path / 'PlatformSDK' / 'Include'
+    platform_sdk_include = vc7_path / 'PLATFORMSDK' / 'INCLUDE'
+    print(f"COPY {platform_sdk_include}")
     for src_file in platform_sdk_include.rglob('*'):
         if not src_file.is_file():
             continue
@@ -70,11 +74,13 @@ def main():
         dst_file.parent.mkdir(exist_ok=True)
 
         # Then, copy the file.
+        print(src_file, "->", dst_file)
         shutil.copyfile(src_file, dst_file)
 
 
     # Finally, copy DXSDK
     dx8sdk_include = dx8sdk_path / 'include'
+    print(f"COPY {dx8sdk_include}")
     for src_file in dx8sdk_include.rglob('*'):
         if not src_file.is_file():
             continue
@@ -86,6 +92,7 @@ def main():
         dst_file.parent.mkdir(exist_ok=True)
 
         # Then, copy the file.
+        print(src_file, "->", dst_file)
         shutil.copyfile(src_file, dst_file)
 
 if __name__ == '__main__':
